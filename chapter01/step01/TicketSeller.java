@@ -8,6 +8,6 @@ public class TicketSeller {
     }
 
     public void sellTo(Audience audience) {
-        ticketOffice.sellTicketTo(audience);
+        ticketOffice.sellTicketTo(audience); // 기존에 없던 새로운 의존성이 추가되었다.
     }
 }
