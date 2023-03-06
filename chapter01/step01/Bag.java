@@ -14,7 +14,7 @@ public class Bag { // 관람객이 소지품을 보관할 가방
         this.amount = amount;
     }
 
-    public boolean hasInvitation() { // 초대장의 보유 여부 판단
+    private boolean hasInvitation() { // 초대장의 보유 여부 판단
         return invitation != null;
     }
 
@@ -22,15 +22,26 @@ public class Bag { // 관람객이 소지품을 보관할 가방
         return ticket != null;
     }
 
-    public void setTicket(Ticket ticket) { // 초대장을 티켓으로 교환
+    private void setTicket(Ticket ticket) { // 초대장을 티켓으로 교환
         this.ticket = ticket;
     }
 
-    public void minusAmount(Long amount) { // 현금 감소
+    private void minusAmount(Long amount) { // 현금 감소
         this.amount -= amount;
     }
 
     public void plusAmount(Long amount) { // 현금 증가
         this.amount += amount;
+    }
+
+    public Long hold(Ticket ticket) {
+        if (hasInvitation()) {
+            setTicket(ticket);
+            return 0L;
+        } else {
+            setTicket(ticket);
+            minusAmount(ticket.getFee());
+            return ticket.getFee();
+        }
     }
 }
